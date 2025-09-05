@@ -9,7 +9,7 @@
 mkdir -p task/{dir1,dir2,dir3/dir4}
 
 # изменяем текущую директорию на task
-cd task
+cd task || exit
 
 # создаём пустой файл task/dir2/empty
 touch dir2/empty
@@ -18,7 +18,7 @@ touch dir2/empty
 # #!/bin/bash
 # echo "$1, привет!"
 touch dir2/hello.sh
-echo '#!/bin/bash' > dir2/hello.sh &&
+echo '#!/bin/bash' > dir2/hello.sh
 echo 'echo "$1, привет!"' >> dir2/hello.sh
 
 
@@ -33,8 +33,7 @@ cp -r dir2/. dir3/dir4/
 
 # записываем в task/dir1/summary.txt список файлов с расширением *.txt
 # находящихся в task, включая поддиректории
-touch dir1/summary.txt
-find ../task -type f -name "*.txt" > dir1/summary.txt
+find . -type f -name "*.txt" > dir1/summary.txt
 
 # дописываем в task/dir1/summary.txt содержимое task/dir2/list.txt
 cat dir2/list.txt >> dir1/summary.txt
@@ -55,6 +54,7 @@ cat "Практическое задание"
 # ищем в файле "Практическое задание" строки, которые содержат слово "dir"
 # и затем отсортировываем их
 grep "dir" "Практическое задание" | sort
+
 # меняем текущую директорию на родительскую для task
 cd ../
 
